@@ -17,17 +17,21 @@ struct PrimaryCapsuleButton: View {
 
         Button(action: action) {
 
-            HStack {
-
-                Image(systemName: icon)
-
+            HStack(spacing: 6) {
+                
+                Image(icon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16)
+                
                 Text(title)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 13, weight: .semibold, design: .default))
+                    .tracking(-0.15)
             }
             .padding(.vertical, 10)
             .padding(.horizontal, 20)
-            .background(Color.green.opacity(0.1))
-            .foregroundColor(Color(hex: "007D43"))
+            .background(Color(hex: "#139D61").opacity(0.1)) // Using your hex directly for consistency
+            .foregroundColor(Color(hex: "#139D61"))
             .clipShape(Capsule())
         }
     }

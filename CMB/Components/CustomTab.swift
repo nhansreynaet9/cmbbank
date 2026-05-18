@@ -4,94 +4,98 @@ struct CustomTab: View {
     @Binding var selectedTab: Int
 
     var body: some View {
-        ZStack {
-            HStack(spacing: 0) {
-                
-                TabItemView(
-                    icon: "ic_chipmong",
-                    label: "Account",
-                    isActive: selectedTab == 0
-                )
-                .onTapGesture { selectedTab = 0 }
+        ZStack(alignment: .top) {
 
-                TabItemView(
-                    icon: "ic_benifits",
-                    label: "Benefits",
-                    isActive: selectedTab == 1
-                )
-                .onTapGesture { selectedTab = 1 }
+            Color.tabBarBackground
+                .ignoresSafeArea(edges: .bottom)
+
+            ZStack(alignment: .top) {
+
+           
+                HStack(spacing: 0) {
+                    TabItemView(
+                        icon: "ic_chipmong",
+                        label: "Account",
+                        isActive: selectedTab == 0
+                    )
+                    .onTapGesture { selectedTab = 0 }
+
+                    TabItemView(
+                        icon: "ic_benifits",
+                        label: "Benefits",
+                        isActive: selectedTab == 1
+                    )
+                    .onTapGesture { selectedTab = 1 }
 
               
-                Spacer()
-                    .frame(width: 70)
+                    Spacer()
+                        .frame(width: 80)
 
-                TabItemView(
-                    icon: "ic_withdrawal",
-                    label: "Withdrawal",
-                    isActive: selectedTab == 2
-                )
-                .onTapGesture { selectedTab = 2 }
+                    TabItemView(
+                        icon: "ic_withdrawal",
+                        label: "WIthdraw",
+                        isActive: selectedTab == 2
+                    )
+                    .onTapGesture { selectedTab = 2 }
 
-                TabItemView(
-                    icon: "ic_supports", 
-                    label: "Support",
-                    isActive: selectedTab == 3
-                )
-                .onTapGesture { selectedTab = 3 }
-            }
-            .padding(.horizontal, 10)
-            .frame(height: 70)
-            .background(Color(hex: "B8E1CF")) // Your bar background
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .shadow(color: .black.opacity(0.08), radius: 10, y: -2)
-
-            
-            Button {
-                print("QR tapped")
-            } label: {
-                ZStack {
-                    Circle()
-                        .fill(Color(hex: "00A859"))
-                        .frame(width: 65, height: 65)
-
-                    Image(systemName: "qrcode.viewfinder")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(.white)
+                    TabItemView(
+                        icon: "ic_supports",
+                        label: "Support",
+                        isActive: selectedTab == 3
+                    )
+                    .onTapGesture { selectedTab = 3 }
                 }
-                .overlay {
-                    Circle()
-                        .stroke(.white, lineWidth: 5)
+                .frame(height: 60)
+                .padding(.top, 8)
+
+          
+                Button {
+                    print("QR tapped")
+                } label: {
+                    ZStack {
+                    
+                        Circle()
+                            .fill(Color.tabBarBackground)
+                            .frame(width: 72, height: 72)
+
+                 
+                        Circle()
+                            .fill(Color.brandPrimary)
+                            .frame(width: 60, height: 60)
+
+                        Image("ic_scanqr")
+                            .font(.system(size: 26, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
                 }
-                .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
+                .offset(y: -20)
             }
-            .offset(y: -28)
         }
-        .padding(.horizontal)
-        .padding(.bottom, 10)
+        .frame(height: 80)
     }
 }
+
 
 struct TabItemView: View {
     let icon: String
     let label: String
     var isActive: Bool
-    
+
     var body: some View {
-        VStack(spacing: 5) {
-           
+        VStack(spacing: 4) {
             Image(icon)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 24, height: 24) 
-            
+                .frame(width: 26, height: 26)
+
             Text(label)
-                .font(.system(size: 11, weight: .medium))
+                .font(.system(size: 11, weight: isActive ? .semibold : .regular))
         }
         .frame(maxWidth: .infinity)
         .foregroundColor(
             isActive
-            ? Color(hex: "00A859")
-            : Color.black.opacity(0.5)
+                ? Color.brandPrimary
+            : Color.labelGray
         )
     }
 }

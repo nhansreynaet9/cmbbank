@@ -10,6 +10,7 @@ struct BankingServicesView: View {
     )
 
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 15) {
 
             Text("Banking Service")
@@ -21,9 +22,10 @@ struct BankingServicesView: View {
                     ServiceItemView(service: service)
                 }
             }
-            .frame(maxWidth: 344, minHeight: 204) // Exact Figma Dimensions
+            .frame(maxWidth: 344, minHeight: 204)
+            .padding(.vertical, 12)
             .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 16)) // Exact Figma 16px Radius
+            .clipShape(RoundedRectangle(cornerRadius: 16)) 
         }
     }
 }

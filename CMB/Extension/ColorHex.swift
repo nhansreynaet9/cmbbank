@@ -7,13 +7,11 @@
 import SwiftUI
 
 extension Color {
-  
     static let appBackground = Color(hex: "#139D61")
     static let tabBarBackground = Color(hex: "#B8E1CF")
     static let brandPrimary = Color(hex: "00A859")
     static let brandDarkGreen = Color(hex: "007D43")
-
-        static let labelGray = Color(
+    static let labelGray = Color(
             red: 114/255,
             green: 114/255,
             blue: 114/255

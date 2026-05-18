@@ -4,62 +4,64 @@ struct AccountCardView: View {
 
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 0) { // Using 0 spacing to explicitly control gaps
+        VStack(alignment: .leading, spacing: 0) {
 
-            // 1. Top Header Row
-            HStack {
-                Image(systemName: "building.columns.fill")
-                    .foregroundColor(Color(hex: "007D43"))
+            HStack(spacing: 8) {
+                Image("ic_pg")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
 
-                Text("INSTANT ACCOUNT ...8274")
+                Text("Sreynaet's Account ...3123")
                     .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(.gray)
-
-                Spacer()
+                    .foregroundColor(Color(hex: "9E9E9E"))
 
                 Text("Default")
                     .font(.system(size: 11, weight: .medium))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
-                    .foregroundColor(.green)
+                    .background(Color(hex: "00A859").opacity(0.12))
+                    .foregroundColor(Color(hex: "00A859"))
                     .clipShape(Capsule())
-            }
-            
-            // Explicit 12px Gap
-            Spacer(minLength: 12)
 
-            // 2. Balance Row
+                Spacer()
+            }
+            Spacer()
+
+   
             HStack(spacing: 8) {
-                Text("$ 10")
-                    .font(.title.bold())
+                Text("$1168.00")
+                    .font(.system(size: 26, weight: .bold))
+                    .foregroundColor(Color(hex: "1A1A1A"))
 
-                Image(systemName: "eye.fill")
-                    .foregroundColor(.green.opacity(0.7))
+                Image("ic_eye")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(Color(hex: "00A859"))
             }
-            
-            // Explicit 12px Gap
-            Spacer(minLength: 12)
 
-            // 3. Action Button Row
+            Spacer() 
+
+         
             HStack {
                 Spacer()
 
                 PrimaryCapsuleButton(
                     title: "Pay & Transfer",
-                    icon: "arrow.up.right.and.arrow.down.left.rectangle"
+                    icon: "ic_transfer"
                 ) {
-                    // Action
+              
                 }
             }
         }
-        .padding(16) // Exact Figma 16px padding
-        .frame(maxWidth: 356, minHeight: 135) // Exact Figma Dimensions
+        .padding(16)
+        .frame(width: 356, height: 135)
         .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 20)) // Exact Figma 20px Radius
+        .clipShape(RoundedRectangle(cornerRadius: 20))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1) // Exact Figma 1px border
+                .stroke(Color(hex: "F5F5F5"), lineWidth: 1)
         )
     }
 }

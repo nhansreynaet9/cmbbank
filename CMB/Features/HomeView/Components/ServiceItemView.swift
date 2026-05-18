@@ -19,7 +19,7 @@ struct ServiceItemView: View {
                 .frame(width: 57, height: 78)
             
             Text(service.title)
-                .font(.caption)
+                .font(.caption.bold())
         }
     }
 }
