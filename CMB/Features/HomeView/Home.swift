@@ -6,7 +6,8 @@ struct HomeView: View {
         AppLayout(
             selectedTab: $viewModel.selectedTab,
             scrollOffset: viewModel.scrollOffset
-        ) {
+        )
+        {
             ScrollView(showsIndicators: false) {
                 GeometryReader { geo in
                     let offset = geo.frame(in: .global).minY
@@ -28,7 +29,6 @@ struct HomeView: View {
                     .padding(.top, 12).padding(.bottom, 12).padding(.horizontal, 12)
                     .figmaGlassStyle(width: 356, height: 309)
                     .padding(.top, 12).padding(.horizontal, 16)
-
                     VStack(alignment: .leading, spacing: 6) {
                         FrequentlyUsedSection()
                     }
@@ -38,9 +38,12 @@ struct HomeView: View {
                 }
                 .padding(.bottom, 120)
             }
+           
         }
+        
     }
 }
+
 #Preview {
     HomeView()
 }

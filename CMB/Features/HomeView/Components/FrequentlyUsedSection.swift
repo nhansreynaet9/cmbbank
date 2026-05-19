@@ -1,7 +1,4 @@
 import SwiftUI
-
-
-
 struct FrequentlyUsedSection: View {
 
     let items: [FrequentItem] = [
@@ -12,7 +9,6 @@ struct FrequentlyUsedSection: View {
     ]
 
     var body: some View {
-
         VStack(alignment: .leading, spacing: 12) {
 
             Text("Frequently Used")

@@ -45,7 +45,7 @@ struct CustomTab: View {
                     )
                     .onTapGesture { selectedTab = 3 }
                 }
-                .frame(height: 60)
+                .frame(height: 50)
                 .padding(.top, 8)
 
           
@@ -71,7 +71,7 @@ struct CustomTab: View {
                 .offset(y: -20)
             }
         }
-        .frame(height: 80)
+        .frame(height: 20)
     }
 }
 
@@ -98,4 +98,8 @@ struct TabItemView: View {
             : Color.labelGray
         )
     }
+}
+
+#Preview {
+    
 }

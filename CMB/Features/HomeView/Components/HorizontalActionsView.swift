@@ -11,7 +11,9 @@ struct HorizontalActionsView: View {
                 }
             }
             .padding(.vertical, 4)
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 7)
+            
+            
         }
     }
 }
