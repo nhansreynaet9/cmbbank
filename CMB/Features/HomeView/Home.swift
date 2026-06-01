@@ -1,13 +1,16 @@
+//
+//  HomeView.swift
+//  CMB
+//
+
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var tabCoordinator: TabCoordinator
+    @EnvironmentObject var navigator: AppNavigator
     @StateObject private var viewModel = HomeViewModel()
     var body: some View {
-        AppLayout(
-            selectedTab: $viewModel.selectedTab,
-            scrollOffset: viewModel.scrollOffset
-        )
-        {
+        AppLayout(scrollOffset: viewModel.scrollOffset, showTab: false) {
             ScrollView(showsIndicators: false) {
                 GeometryReader { geo in
                     let offset = geo.frame(in: .global).minY
@@ -16,34 +19,70 @@ struct HomeView: View {
                         .onChangeCompat(of: offset) { value in
                             viewModel.scrollOffset = -value
                         }
+                    //sfedgrfhtgjhk
                 }
                 .frame(height: 0)
+
                 VStack(spacing: 0) {
                     Color.clear.frame(height: 100)
-                    QuickBankingChip().padding(.horizontal, 16)
-                    AccountCardView().padding(.top, 20).padding(.horizontal, 16)
-                    VStack(alignment: .leading, spacing: 8) {
-                        BankingServicesView(services: viewModel.services)
-                        HorizontalActionsView(actions: viewModel.actions)
+
+                    ScreenContent {
+                        QuickBankingChip()
                     }
-                    .padding(.top, 12).padding(.bottom, 12).padding(.horizontal, 12)
-                    .figmaGlassStyle(width: 356, height: 309)
-                    .padding(.top, 12).padding(.horizontal, 16)
-                    VStack(alignment: .leading, spacing: 6) {
-                        FrequentlyUsedSection()
+
+                    ScreenContent {
+                        AccountCardView()
                     }
-                    .padding(.top, 12).padding(.bottom, 12).padding(.horizontal, 16)
-                    .figmaGlassStyle(width: 356, height: 180)
-                    .padding(.top, 12).padding(.horizontal, 16)
+                    .padding(.top, 20)
+
+                    ScreenContent {
+                        VStack(alignment: .leading, spacing: 8) {
+                            BankingServicesView(
+                                services: viewModel.services,
+                                onTap: { service in
+                                    
+                                    switch service.title {
+                                    case "Accounts":  navigator.openAccounts()
+                                    case "Payments":  navigator.openPayments()
+                                    case "Transfers": print("Transfers tapped")
+                                    default:          break
+                                    }
+                                }
+                            )
+                            HorizontalActionsView(
+                                actions: viewModel.actions,
+                                onTap: { action in
+                                    switch action.title {
+                                    case "Locator": navigator.openLocator()
+                                    default: break
+                                    }
+                                }
+                            )
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 12)
+                        .figmaGlassStyle()
+                    }
+                    .padding(.top, 12)
+
+                    ScreenContent {
+                        VStack(alignment: .leading, spacing: 6) {
+                            FrequentlyUsedSection(items: viewModel.frequentItems)
+                        }
+                        .padding(.vertical, 12)
+                        .figmaGlassStyle()
+                    }
+                    .padding(.top, 12)
                 }
                 .padding(.bottom, 120)
             }
-           
         }
-        
+  
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(TabCoordinator())
+        .environmentObject(AppNavigator())
 }

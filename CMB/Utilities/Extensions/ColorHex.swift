@@ -1,0 +1,43 @@
+import SwiftUI
+
+extension Color {
+
+//app
+    static let appBackground    = Color(hex: "#139D61")
+    static let tabBarBackground = Color(hex: "#B8E1CF")
+    static let brandPrimary     = Color(hex: "#00A859")
+    static let brandDarkGreen   = Color(hex: "#007D43")
+    static let labelGray        = Color(red: 114/255, green: 114/255, blue: 114/255)
+    static let hideGradientStart  = Color(hex: "#D9D9D9")
+    static let hideGradientEnd    = Color(hex: "#F5F5F5")
+    static let hideIconBackground = Color(hex: "#E8E8E8")
+    static let hideIconForeground = Color(hex: "#7A7A7A")
+    static let hideAccountLabel   = Color(hex: "#2C2C2C")
+    static let hideChevron        = Color(hex: "#7A7A7A")
+//chart
+    static let donutGreen       = Color(hex: "#63BC42")
+    static let donutDarkGreen   = Color(hex: "#139D61")
+    static let donutBlue        = Color(hex: "#2CACA7")
+    static let red              = Color(hex: "#CC0101")
+    
+//else
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+        self.init(.sRGB,
+                  red: Double(r) / 255,
+                  green: Double(g) / 255,
+                  blue: Double(b) / 255,
+                  opacity: Double(a) / 255)
+    }
+}

@@ -14,7 +14,6 @@ struct QuickBankingChip: View {
             .padding(.vertical, 6)
             .background(Color.black.opacity(0.3))
             .cornerRadius(20)
-            
             Spacer()
         }
     }
