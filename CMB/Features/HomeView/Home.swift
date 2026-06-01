@@ -19,7 +19,6 @@ struct HomeView: View {
                         .onChangeCompat(of: offset) { value in
                             viewModel.scrollOffset = -value
                         }
-                    //sfedgrfhtgjhk
                 }
                 .frame(height: 0)
 
